@@ -19,7 +19,7 @@ fn load_scene(mut commands: Commands, asset_server: Res<AssetServer>) {
 
     commands.spawn((
         DirectionalLight {
-            illuminance: light_consts::lux::CLEAR_SUNRISE,
+            illuminance: light_consts::lux::AMBIENT_DAYLIGHT,
             shadow_maps_enabled: true,
             ..default()
         },
