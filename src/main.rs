@@ -19,6 +19,7 @@ fn load_scene(mut commands: Commands, asset_server: Res<AssetServer>) {
 
     commands.spawn((
         DirectionalLight {
+            illuminance: light_consts::lux::CLEAR_SUNRISE,
             shadow_maps_enabled: true,
             ..default()
         },
@@ -37,3 +38,5 @@ fn load_scene(mut commands: Commands, asset_server: Res<AssetServer>) {
         asset_server.load(GltfAssetLabel::Scene(0).from_asset("models/school_bp.glb")),
     ));
 }
+
+fn update_cam() {}
