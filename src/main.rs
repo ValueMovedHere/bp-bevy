@@ -2,11 +2,14 @@ use bevy::{
     light::{CascadeShadowConfigBuilder, DirectionalLightShadowMap},
     prelude::*,
 };
+use bevy_inspector_egui::{bevy_egui::EguiPlugin, quick::WorldInspectorPlugin};
 
 fn main() {
     App::new()
         .insert_resource(DirectionalLightShadowMap { size: 4096 })
         .add_plugins(DefaultPlugins)
+        .add_plugins(EguiPlugin::default())
+        .add_plugins(WorldInspectorPlugin::new())
         .add_systems(Startup, load_scene)
         .run();
 }
