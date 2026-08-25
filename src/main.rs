@@ -6,7 +6,7 @@ use bevy::{
 fn main() {
     App::new()
         .insert_resource(DirectionalLightShadowMap { size: 4096 })
-        .add_plugins(DefaultPickingPlugins)
+        .add_plugins(DefaultPlugins)
         .add_systems(Startup, load_scene)
         .run();
 }
