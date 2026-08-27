@@ -44,6 +44,7 @@ pub fn setup_controller(mut commands: Commands) {
             },
             FpsController {
                 air_acceleration: 80.0,
+                sensitivity: 0.01,
                 ..default()
             },
         ))
