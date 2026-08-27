@@ -59,7 +59,7 @@ pub fn setup_controller(mut commands: Commands) {
             fov: TAU / 5.0,
             ..default()
         }),
-        Exposure::SUNLIGHT,
+        Exposure::BLENDER,
         RenderPlayer { logical_entity },
     ));
 }

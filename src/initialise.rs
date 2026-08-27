@@ -8,6 +8,7 @@ pub fn load_scene(mut commands: Commands, asset_server: Res<AssetServer>) {
     commands.spawn((
         DirectionalLight {
             shadow_maps_enabled: true,
+            illuminance: light_consts::lux::HALLWAY,
             ..default()
         },
         CascadeShadowConfigBuilder {
