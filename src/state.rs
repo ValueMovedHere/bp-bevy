@@ -5,6 +5,13 @@ use bevy::window::{
 };
 use bevy_fps_controller::controller::*;
 
+#[derive(States, Default, Hash, Eq, PartialEq, Clone, Copy, Debug)]
+pub enum Level {
+    #[default]
+    School,
+    LiminalSpace,
+}
+
 pub fn manage_cursor(
     key: Res<ButtonInput<KeyCode>>,
     mut cursor: Single<&mut CursorOptions>,
