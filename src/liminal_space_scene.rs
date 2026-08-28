@@ -49,5 +49,11 @@ pub fn collider_liminal_space(mut commands: Commands) {
             Collider::cuboid(0.582f32, H, 0.640f32),
         ),
     ]);
+    let collider1 = Collider::cuboid(10f32, H, 10f32);
     commands.spawn((RigidBody::Static, colliders));
+    commands.spawn((
+        Transform::from_xyz(0f32, -1.25, 0f32),
+        RigidBody::Static,
+        collider1,
+    ));
 }
