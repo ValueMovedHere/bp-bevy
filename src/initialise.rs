@@ -3,6 +3,7 @@ use bevy::{
     light::CascadeShadowConfigBuilder, //
     prelude::*,
 };
+use bevy_easy_gif::Gif3d;
 
 pub fn load_scene(mut commands: Commands, asset_server: Res<AssetServer>) {
     commands.spawn((
@@ -111,5 +112,14 @@ pub fn set_scene_colliders(mut commands: Commands) {
         Transform::from_xyz(0.000, 0.000, -18.508),
         RigidBody::Static,
         Collider::from(collider_end_wall),
+    ));
+}
+
+pub fn load_gif(mut commands: Commands, asset_server: Res<AssetServer>) {
+    let gif_handle = asset_server.load("pictures/technyancolor_fast.gif");
+    commands.spawn((
+        Transform::from_xyz(0f32, 1f32, 0f32),
+        Gif3d { handle: gif_handle },
+        Mesh3d::default(),
     ));
 }
