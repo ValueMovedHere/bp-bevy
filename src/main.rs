@@ -6,6 +6,7 @@ use bevy::{
 
 mod controller;
 mod initialise;
+mod state;
 
 fn main() {
     App::new()
@@ -16,6 +17,6 @@ fn main() {
         .add_systems(Startup, initialise::load_scene)
         .add_systems(Startup, initialise::set_scene_colliders)
         .add_systems(Startup, controller::setup_controller)
-        .add_systems(Update, controller::respawn)
+        .add_systems(Update, (controller::respawn, state::manage_cursor))
         .run();
 }
