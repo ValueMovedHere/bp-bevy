@@ -18,9 +18,9 @@ pub fn load_scene(mut commands: Commands, asset_server: Res<AssetServer>) {
         }
         .build(),
     ));
-    commands.spawn(WorldAssetRoot(
-        asset_server.load(GltfAssetLabel::Scene(0).from_asset("models/school_bp.glb")),
-    ));
+    commands.spawn(WorldAssetRoot(asset_server.load(
+        GltfAssetLabel::Scene(0).from_asset("models/a_liminal_space.glb"),
+    )));
 }
 
 pub fn set_scene_colliders(mut commands: Commands) {

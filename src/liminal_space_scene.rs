@@ -9,9 +9,9 @@ pub fn cleanup_school_scene(mut commands: Commands, assets: Res<Assets<WorldAsse
 pub fn collider_liminal_space(mut commands: Commands) {
     let colliders = Collider::compound(vec![
         (
-            Vec3::new(0f32, Y, 0f32),
+            Vec3::new(0f32, 0f32, 0f32),
             Quat::IDENTITY,
-            Collider::cuboid(10f32, H, 10f32),
+            Collider::cuboid(10f32, 0.001, 10f32),
         ),
         (
             Vec3::new(-2.779f32, Y, 2.777f32),
