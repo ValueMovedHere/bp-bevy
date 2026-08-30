@@ -26,9 +26,9 @@ pub fn load_scene(mut commands: Commands, asset_server: Res<AssetServer>) {
 pub fn set_scene_colliders(mut commands: Commands) {
     let colliders_cuboid = Collider::compound(vec![
         (
-            Vec3::new(0.0, 0.0, 0.0), // floor
+            Vec3::new(0.0, -1f32, 0.0), // floor
             Quat::IDENTITY,
-            Collider::cuboid(4.290, 0.001, 27.320),
+            Collider::cuboid(4.290, 1f32, 27.320),
         ),
         (
             Vec3::new(-1.148, 0.853, 14.883), // steps
