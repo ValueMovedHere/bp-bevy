@@ -16,7 +16,7 @@ fn main() {
         .add_plugins(PhysicsPlugins::default())
         .add_plugins(controller::FpsControllerPlugin)
         .add_systems(Startup, initialise::load_scene)
-        .add_systems(Startup, initialise::set_scene_colliders)
+        .add_systems(Startup, levels::setup_colliders)
         .add_systems(Startup, controller::setup_controller)
         .add_systems(Update, (controller::respawn, state::manage_cursor))
         .run();
