@@ -1995,6 +1995,7 @@ dependencies = [
  "avian3d",
  "bevy",
  "bevy_fps_controller",
+ "serde_scene",
 ]
 
 [[package]]
@@ -5125,6 +5126,17 @@ dependencies = [
  "serde",
  "serde_core",
  "zmij",
+]
+
+[[package]]
+name = "serde_scene"
+version = "0.1.0"
+source = "git+https://v6.gh-proxy.org/https://github.com/ValueMovedHere/serde_scene.git?rev=7d97e20b4a89e639092bb0c68bd44ebd52c8ad47#7d97e20b4a89e639092bb0c68bd44ebd52c8ad47"
+dependencies = [
+ "avian3d",
+ "bevy",
+ "serde",
+ "serde_json",
 ]
 
 [[package]]
