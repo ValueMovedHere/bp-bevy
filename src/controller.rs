@@ -43,6 +43,8 @@ pub fn setup_controller(mut commands: Commands) {
                 ..default()
             },
             FpsController {
+                upright_height: 1.8,
+                crouch_height: 0.7,
                 air_acceleration: 80.0,
                 sensitivity: 0.01,
                 ..default()
