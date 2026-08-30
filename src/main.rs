@@ -6,6 +6,7 @@ use bevy::{
 
 mod controller;
 mod initialise;
+mod levels;
 mod state;
 
 fn main() {
