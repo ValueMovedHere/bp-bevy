@@ -5,6 +5,8 @@ use bevy::{
     window::CursorOptions,
 };
 
+use crate::state::Level;
+
 #[derive(Component)]
 pub struct LevelSchoolRes;
 
@@ -133,4 +135,19 @@ pub fn cleanup(mut commands: Commands, query: Query<Entity, With<LevelSchoolRes>
     for entity in query.iter() {
         commands.entity(entity).despawn();
     }
+}
+
+pub fn next_level(
+    mut next_state: ResMut<NextState<Level>>,
+    query: Query<&Transform, With<LinearVelocity>>,
+) {
+    for player in query {
+        if player.translation.y < -10f32 {
+            next_state.set(Level::LevelBackroomsBaked);
+        }
+    }
+}
+
+pub fn print_state(state: Res<State<crate::state::Level>>) {
+    println!("Current state: {:#?}", state);
 }

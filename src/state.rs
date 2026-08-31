@@ -31,9 +31,3 @@ pub fn manage_cursor(
         }
     }
 }
-
-pub fn next_state(mut next_state: ResMut<NextState<Level>>, key: Res<ButtonInput<KeyCode>>) {
-    if key.just_pressed(KeyCode::KeyN) {
-        next_state.set(Level::LevelBackroomsBaked);
-    }
-}

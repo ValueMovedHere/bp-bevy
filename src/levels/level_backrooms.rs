@@ -2,11 +2,25 @@ use avian3d::prelude::*;
 use bevy::prelude::*;
 use serde_scene::from_json;
 
+#[derive(Component)]
+pub struct LevelBackroomsBakedRes;
+
 pub fn setup_colliders(mut commands: Commands) {
     let colliders =
         from_json("./data/levels/level-backrooms-baked/colliders/backrooms_colliders.json");
     let scene_collider = Collider::compound(colliders);
     commands.spawn((RigidBody::Static, scene_collider));
+}
+
+pub fn load_scene(mut commands: Commands, asset_server: Res<AssetServer>) {
+    commands.spawn((
+        LevelBackroomsBakedRes,
+        WorldAssetRoot(
+            asset_server.load(
+                GltfAssetLabel::Scene(0).from_asset("models/backrooms_with_baked_textures.glb"),
+            ),
+        ),
+    ));
 }
 
 pub fn cleanup() {}

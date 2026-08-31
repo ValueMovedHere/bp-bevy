@@ -5,7 +5,7 @@ use bevy::camera::Exposure;
 use bevy::prelude::*;
 pub use bevy_fps_controller::controller::*;
 
-const SPAWN_POINT: Vec3 = Vec3::new(0.0, 1.625, 0.0);
+const SPAWN_POINT: Vec3 = Vec3::new(0.0, 0f32, 0.0);
 
 pub fn setup_controller(mut commands: Commands) {
     // Note that we have two entities for the player
@@ -13,7 +13,7 @@ pub fn setup_controller(mut commands: Commands) {
     // The other is a "render" player that is what is displayed to the user
     // This distinction is useful for later on if you want to add multiplayer,
     // where often time these two ideas are not exactly synced up
-    let height = 3.0;
+    let height = 1.8f32;
     let logical_entity = commands
         .spawn((
             Collider::cylinder(0.5, height),
@@ -43,6 +43,7 @@ pub fn setup_controller(mut commands: Commands) {
                 ..default()
             },
             FpsController {
+                walk_speed: 5f32,
                 upright_height: 1.8,
                 crouch_height: 0.7,
                 air_acceleration: 80.0,
@@ -68,10 +69,6 @@ pub fn setup_controller(mut commands: Commands) {
 
 pub fn respawn(mut query: Query<(&mut Transform, &mut LinearVelocity)>) {
     for (mut transform, mut velocity) in &mut query {
-        if transform.translation.y > -50.0 {
-            continue;
-        }
-
         velocity.0 = Vec3::ZERO;
         transform.translation = SPAWN_POINT;
     }
