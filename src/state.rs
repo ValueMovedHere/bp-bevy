@@ -5,6 +5,13 @@ use bevy::window::{
 };
 use bevy_fps_controller::controller::*;
 
+#[derive(Debug, Clone, Copy, Hash, Eq, PartialEq, Default, States)]
+pub enum Level {
+    #[default]
+    LevelSchool,
+    LevelBackroomsBaked,
+}
+
 pub fn manage_cursor(
     key: Res<ButtonInput<KeyCode>>,
     mut cursor: Single<&mut CursorOptions>,
@@ -22,5 +29,11 @@ pub fn manage_cursor(
         for mut controller in &mut controller_query {
             controller.enable_input = true;
         }
+    }
+}
+
+pub fn next_state(mut next_state: ResMut<NextState<Level>>, key: Res<ButtonInput<KeyCode>>) {
+    if key.just_pressed(KeyCode::KeyN) {
+        next_state.set(Level::LevelBackroomsBaked);
     }
 }

@@ -2,7 +2,11 @@ use avian3d::prelude::*;
 use bevy::{
     light::CascadeShadowConfigBuilder, //
     prelude::*,
+    window::CursorOptions,
 };
+
+#[derive(Component)]
+pub struct LevelSchoolRes;
 
 pub fn load_scene(mut commands: Commands, asset_server: Res<AssetServer>) {
     commands.spawn((
@@ -17,9 +21,13 @@ pub fn load_scene(mut commands: Commands, asset_server: Res<AssetServer>) {
             ..default()
         }
         .build(),
+        LevelSchoolRes,
     ));
-    commands.spawn(WorldAssetRoot(
-        asset_server.load(GltfAssetLabel::Scene(0).from_asset("models/school_bp.glb")),
+    commands.spawn((
+        WorldAssetRoot(
+            asset_server.load(GltfAssetLabel::Scene(0).from_asset("models/school_bp.glb")),
+        ),
+        LevelSchoolRes,
     ));
 }
 
@@ -91,7 +99,7 @@ pub fn set_scene_colliders(mut commands: Commands) {
     ]);
     // let collider_side_wall = InfinitePlane3d::new(Vec3::new(1.000, 0.000, 0.000));
     let collider_end_wall = InfinitePlane3d::new(Vec3::new(0.000, 0.000, 1.000));
-    commands.spawn((RigidBody::Static, colliders_cuboid));
+    commands.spawn((RigidBody::Static, colliders_cuboid, LevelSchoolRes));
     // commands.spawn((
     //     Transform::from_xyz(2.096, 0.000, 0.000),
     //     RigidBody::Static,
@@ -106,10 +114,23 @@ pub fn set_scene_colliders(mut commands: Commands) {
         Transform::from_xyz(0.000, 0.000, 18.508),
         RigidBody::Static,
         Collider::from(collider_end_wall),
+        LevelSchoolRes,
     ));
     commands.spawn((
         Transform::from_xyz(0.000, 0.000, -18.508),
         RigidBody::Static,
         Collider::from(collider_end_wall),
+        LevelSchoolRes,
     ));
+}
+
+pub fn set_cursor(mut cursor: Single<&mut CursorOptions>) {
+    cursor.grab_mode = bevy::window::CursorGrabMode::Locked;
+    cursor.visible = false;
+}
+
+pub fn cleanup(mut commands: Commands, query: Query<Entity, With<LevelSchoolRes>>) {
+    for entity in query.iter() {
+        commands.entity(entity).despawn();
+    }
 }
