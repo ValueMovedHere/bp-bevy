@@ -5,10 +5,7 @@ mod controller;
 mod levels;
 mod state;
 
-use state::{
-    Level, 
-    manage_cursor, 
-};
+use state::{Level, manage_cursor};
 
 fn main() {
     App::new()
