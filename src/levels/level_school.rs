@@ -99,19 +99,8 @@ pub fn set_scene_colliders(mut commands: Commands) {
             Collider::cuboid(0.171, 3.314, 36.825),
         ),
     ]);
-    // let collider_side_wall = InfinitePlane3d::new(Vec3::new(1.000, 0.000, 0.000));
     let collider_end_wall = InfinitePlane3d::new(Vec3::new(0.000, 0.000, 1.000));
     commands.spawn((RigidBody::Static, colliders_cuboid, LevelSchoolRes));
-    // commands.spawn((
-    //     Transform::from_xyz(2.096, 0.000, 0.000),
-    //     RigidBody::Static,
-    //     Collider::from(collider_side_wall),
-    // ));
-    // commands.spawn((
-    //     Transform::from_xyz(-2.204, 0.000, 0.000),
-    //     RigidBody::Static,
-    //     Collider::from(collider_side_wall),
-    // ));
     commands.spawn((
         Transform::from_xyz(0.000, 0.000, 18.508),
         RigidBody::Static,
