@@ -6,9 +6,9 @@ use serde_scene::from_json;
 pub struct LevelBackroomsBakedRes;
 
 pub fn setup_colliders(mut commands: Commands) {
-    let colliders =
+    let colliders_vec =
         from_json("./data/levels/level-backrooms-baked/colliders/backrooms_colliders.json");
-    let scene_collider = Collider::compound(colliders);
+    let scene_collider = Collider::compound(colliders_vec);
     commands.spawn((RigidBody::Static, scene_collider));
 }
 
