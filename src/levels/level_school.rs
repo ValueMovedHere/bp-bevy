@@ -136,7 +136,3 @@ pub fn next_level(
         }
     }
 }
-
-pub fn print_state(state: Res<State<crate::state::Level>>) {
-    println!("Current state: {:#?}", state);
-}
