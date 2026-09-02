@@ -5,7 +5,7 @@ use bevy::camera::Exposure;
 use bevy::prelude::*;
 pub use bevy_fps_controller::controller::*;
 
-const SPAWN_POINT: Vec3 = Vec3::new(0.0, 0f32, 0.0);
+const SPAWN_POINT: Vec3 = Vec3::new(0f32, 0f32, 0f32);
 
 pub fn setup_controller(mut commands: Commands) {
     // Note that we have two entities for the player
