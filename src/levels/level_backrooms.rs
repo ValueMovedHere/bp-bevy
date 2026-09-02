@@ -17,7 +17,7 @@ pub fn load_scene(mut commands: Commands, asset_server: Res<AssetServer>) {
         LevelBackroomsBakedRes,
         WorldAssetRoot(
             asset_server.load(
-                GltfAssetLabel::Scene(0).from_asset("models/backrooms_with_baked_textures.glb"),
+                GltfAssetLabel::Scene(0).from_asset("models/levels/backrooms-baked/backrooms_with_baked_textures.glb"),
             ),
         ),
     ));
