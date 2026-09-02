@@ -27,7 +27,9 @@ pub fn load_scene(mut commands: Commands, asset_server: Res<AssetServer>) {
     ));
     commands.spawn((
         WorldAssetRoot(
-            asset_server.load(GltfAssetLabel::Scene(0).from_asset("models/school_bp.glb")),
+            asset_server.load(
+                GltfAssetLabel::Scene(0).from_asset("models/levels/level-school/school_bp.glb"),
+            ),
         ),
         LevelSchoolRes,
     ));

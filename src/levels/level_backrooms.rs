@@ -15,12 +15,11 @@ pub fn setup_colliders(mut commands: Commands) {
 pub fn load_scene(mut commands: Commands, asset_server: Res<AssetServer>) {
     commands.spawn((
         LevelBackroomsBakedRes,
-        WorldAssetRoot(
-            asset_server.load(
-                GltfAssetLabel::Scene(0)
-                    .from_asset("models/levels/backrooms-baked/backrooms_with_baked_textures.glb"),
+        WorldAssetRoot(asset_server.load(
+            GltfAssetLabel::Scene(0).from_asset(
+                "models/levels/level-backrooms-baked/backrooms_with_baked_textures.glb",
             ),
-        ),
+        )),
     ));
 }
 
