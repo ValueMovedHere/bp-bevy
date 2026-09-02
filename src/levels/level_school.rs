@@ -36,79 +36,79 @@ pub fn load_scene(mut commands: Commands, asset_server: Res<AssetServer>) {
 pub fn set_scene_colliders(mut commands: Commands) {
     let colliders_cuboid = Collider::compound(vec![
         (
-            Vec3::new(0.0, 0.0, 0.0), // floor
+            Vec3::new(0f32, 0f32, 0f32), // floor
             Quat::IDENTITY,
-            Collider::cuboid(4.290, 0.001, 27.320),
+            Collider::cuboid(4.29f32, 0.001f32, 27.32f32),
         ),
         (
-            Vec3::new(-1.148, 0.853, 14.883), // steps
+            Vec3::new(-1.148f32, 0.853f32, 14.883f32), // steps
             Quat::from_rotation_x(-26.89f32.to_radians()),
-            Collider::cuboid(2.286, 0.001, 3.950),
+            Collider::cuboid(2.286f32, 0.001f32, 3.95f32),
         ),
         (
-            Vec3::new(1.194, 2.550, 15.301), // steps
+            Vec3::new(1.194f32, 2.55f32, 15.301f32), // steps
             Quat::from_rotation_x(25.91f32.to_radians()),
-            Collider::cuboid(2.282, 0.001, 3.692),
+            Collider::cuboid(2.282f32, 0.001f32, 3.692f32),
         ),
         (
             // steps1
-            Vec3::new(1.148, 0.853, -14.883),
+            Vec3::new(1.148f32, 0.853f32, -14.883f32),
             Quat::from_rotation_x(26.89f32.to_radians()),
-            Collider::cuboid(2.286, 0.001, 3.950),
+            Collider::cuboid(2.286f32, 0.001f32, 3.95f32),
         ),
         (
             // steps1
-            Vec3::new(-1.194, 2.550, -15.301),
+            Vec3::new(-1.194f32, 2.55f32, -15.301f32),
             Quat::from_rotation_x(-25.91f32.to_radians()),
-            Collider::cuboid(2.282, 0.001, 3.692),
+            Collider::cuboid(2.282f32, 0.001f32, 3.692f32),
         ),
         (
             // wall between steps
-            Vec3::new(0.000, 1.664, 15.187),
+            Vec3::new(0f32, 1.664f32, 15.187f32),
             Quat::IDENTITY,
-            Collider::cuboid(0.317, 3.283, 3.113),
+            Collider::cuboid(0.317f32, 3.283f32, 3.113f32),
         ),
         (
             // floor between steps
-            Vec3::new(0.000, 1.569, 17.602),
+            Vec3::new(0f32, 1.569f32, 17.602f32),
             Quat::IDENTITY,
-            Collider::cuboid(4.662, 0.284, 1.949),
+            Collider::cuboid(4.662f32, 0.284f32, 1.949f32),
         ),
         (
             // wall between steps
-            Vec3::new(0.000, 1.659, -15.185),
+            Vec3::new(0f32, 1.659f32, -15.185f32),
             Quat::IDENTITY,
-            Collider::cuboid(0.286, 3.320, 3.097),
+            Collider::cuboid(0.286f32, 3.32f32, 3.097f32),
         ),
         (
             // floor between steps
-            Vec3::new(0.000, 1.569, -17.602),
+            Vec3::new(0f32, 1.569f32, -17.602f32),
             Quat::IDENTITY,
-            Collider::cuboid(4.662, 0.284, 1.949),
+            Collider::cuboid(4.662f32, 0.284f32, 1.949f32),
         ),
         (
             // side wall
-            Vec3::new(2.224, 1.704, 0.000),
+            Vec3::new(2.224f32, 1.704f32, 0f32),
             Quat::IDENTITY,
-            Collider::cuboid(0.171, 3.314, 36.825),
+            Collider::cuboid(0.171f32, 3.314f32, 36.825f32),
         ),
         (
             // side wall
-            Vec3::new(-2.224, 1.704, 0.000),
+            Vec3::new(-2.224f32, 1.704f32, 0f32),
             Quat::IDENTITY,
-            Collider::cuboid(0.171, 3.314, 36.825),
+            Collider::cuboid(0.171f32, 3.314f32, 36.825f32),
         ),
     ]);
-    let collider_end_wall = InfinitePlane3d::new(Vec3::new(0.000, 0.000, 1.000));
+    let collider_end_wall = InfinitePlane3d::new(Vec3::new(0f32, 0f32, 1f32));
     commands.spawn((RigidBody::Static, colliders_cuboid, LevelSchoolRes));
     commands.spawn((
-        Transform::from_xyz(0.000, 0.000, 18.508),
+        Transform::from_xyz(0f32, 0f32, 18.508f32),
         RigidBody::Static,
         Collider::from(collider_end_wall),
         LevelSchoolRes,
     ));
     commands.spawn((
-        Transform::from_xyz(0.000, 0.000, -18.508),
+        Transform::from_xyz(0f32, 0f32, -18.508f32),
         RigidBody::Static,
         Collider::from(collider_end_wall),
         LevelSchoolRes,
