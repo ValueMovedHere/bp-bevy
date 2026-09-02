@@ -5,18 +5,23 @@ mod controller;
 mod levels;
 mod state;
 
+use state::{
+    Level, 
+    manage_cursor, 
+};
+
 fn main() {
     App::new()
         .add_plugins(DefaultPlugins)
-        .init_state::<state::Level>()
+        .init_state::<Level>()
         .add_plugins(PhysicsPlugins::default())
         .add_plugins(controller::FpsControllerPlugin)
         .add_systems(
-            OnEnter(state::Level::LevelSchool),
+            OnEnter(Level::LevelSchool),
             levels::level_school::load_scene,
         )
         .add_systems(
-            OnEnter(state::Level::LevelSchool),
+            OnEnter(Level::LevelSchool),
             (
                 levels::level_school::set_scene_colliders,
                 levels::level_school::set_cursor,
@@ -25,17 +30,17 @@ fn main() {
         .add_systems(Startup, controller::setup_controller)
         .add_systems(
             Update,
-            levels::level_school::next_level.run_if(in_state(state::Level::LevelSchool)),
+            levels::level_school::next_level.run_if(in_state(Level::LevelSchool)),
         )
         .add_systems(
-            OnExit(state::Level::LevelSchool),
+            OnExit(Level::LevelSchool),
             (
                 levels::level_school::cleanup,
                 levels::level_school::next_level,
             ),
         )
         .add_systems(
-            OnEnter(state::Level::LevelBackroomsBaked),
+            OnEnter(Level::LevelBackroomsBaked),
             (
                 levels::level_backrooms::setup_colliders,
                 levels::level_backrooms::load_scene,
@@ -43,6 +48,6 @@ fn main() {
             )
                 .chain(),
         )
-        .add_systems(Update, (state::manage_cursor))
+        .add_systems(Update, (manage_cursor))
         .run();
 }
