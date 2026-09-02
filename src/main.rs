@@ -1,8 +1,5 @@
 use avian3d::prelude::*;
-use bevy::{
-    // light::DirectionalLightShadowMap, //
-    prelude::*,
-};
+use bevy::prelude::*;
 
 mod controller;
 mod levels;
@@ -10,7 +7,6 @@ mod state;
 
 fn main() {
     App::new()
-        // .insert_resource(DirectionalLightShadowMap { size: 4096 })
         .add_plugins(DefaultPlugins)
         .init_state::<state::Level>()
         .add_plugins(PhysicsPlugins::default())
