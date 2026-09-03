@@ -138,3 +138,12 @@ pub fn next_level(
         }
     }
 }
+
+pub fn remove_model_light(
+    mut commands: Commands,
+    query: Query<Entity, (With<DirectionalLight>, With<LevelSchoolRes>)>,
+) {
+    for light in query {
+        commands.entity(light).despawn();
+    }
+}
