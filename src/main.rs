@@ -27,11 +27,7 @@ fn main() {
         .add_systems(Startup, controller::setup_controller)
         .add_systems(
             Update,
-            (
-                levels::level_school::next_level.run_if(in_state(Level::LevelSchool)),
-                levels::level_school::remove_model_light
-                    .run_if(in_state(state::Level::LevelSchool)),
-            ),
+            (levels::level_school::next_level.run_if(in_state(Level::LevelSchool)),),
         )
         .add_systems(
             OnExit(Level::LevelSchool),

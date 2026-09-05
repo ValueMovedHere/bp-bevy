@@ -12,11 +12,6 @@ pub struct LevelSchoolRes;
 
 pub fn load_scene(mut commands: Commands, asset_server: Res<AssetServer>) {
     commands.spawn((
-        DirectionalLight {
-            shadow_maps_enabled: true,
-            illuminance: light_consts::lux::HALLWAY,
-            ..default()
-        },
         CascadeShadowConfigBuilder {
             num_cascades: 1,
             maximum_distance: 1.6,
@@ -136,14 +131,5 @@ pub fn next_level(
         if player.translation.y < -10f32 {
             next_state.set(Level::LevelBackroomsBaked);
         }
-    }
-}
-
-pub fn remove_model_light(
-    mut commands: Commands,
-    query: Query<Entity, (With<DirectionalLight>, With<LevelSchoolRes>)>,
-) {
-    for light in query {
-        commands.entity(light).despawn();
     }
 }
