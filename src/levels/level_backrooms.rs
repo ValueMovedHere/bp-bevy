@@ -31,7 +31,7 @@ pub fn respawn(query: Query<(&mut Transform, &mut LinearVelocity)>) {
         // 位置
         transform.translation = SPAWN_POINT;
         // 速度归零
-        velocity.0 = Vec3::new(0f32, 0f32, 0f32);
+        velocity.0 = INITIAL_VELOCITY;
     }
 }
 
