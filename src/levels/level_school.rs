@@ -128,7 +128,7 @@ pub fn next_level(
     query: Query<&Transform, With<LinearVelocity>>,
 ) {
     for player in query {
-        if player.translation.y < -10f32 {
+        if player.translation.y < -0.5f32 {
             next_state.set(Level::LevelBackroomsBaked);
         }
     }
