@@ -2,6 +2,8 @@ use avian3d::prelude::*;
 use bevy::prelude::*;
 use serde_scene::from_json;
 
+pub const SPAWN_POINT: Vec3 = Vec3::new(0f32, 1.1f32, 0f32);
+
 #[derive(Component)]
 pub struct LevelBackroomsBakedRes;
 

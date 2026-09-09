@@ -41,10 +41,10 @@ fn main() {
             (
                 levels::level_backrooms::setup_colliders,
                 levels::level_backrooms::load_scene,
-                controller::respawn,
+                levels::level_backrooms::respawn,
             )
                 .chain(),
         )
-        .add_systems(Update, (manage_cursor))
+        .add_systems(Update, manage_cursor)
         .run();
 }
