@@ -5,6 +5,8 @@ use bevy::{
     window::CursorOptions,
 };
 
+use serde_scene;
+
 use crate::state::Level;
 
 pub const SPAWN_POINT: Vec3 = Vec3::new(0f32, 0f32, 0f32);
@@ -33,7 +35,7 @@ pub fn load_scene(mut commands: Commands, asset_server: Res<AssetServer>) {
 }
 
 pub fn set_scene_colliders(mut commands: Commands) {
-    let colliders_cuboid = Collider::compound(vec![
+    let mut colliders_cuboid_vec0 = vec![
         (
             Vec3::new(0f32, 0f32, 0f32), // floor
             Quat::IDENTITY,
@@ -97,9 +99,12 @@ pub fn set_scene_colliders(mut commands: Commands) {
             Quat::IDENTITY,
             Collider::cuboid(0.171f32, 3.314f32, 36.825f32),
         ),
-    ]);
+    ];
+    let mut colliders_cuboid_vec1 =
+        serde_scene::from_json("./data/levels/level-school/colliders/colliders.json");
+    let colliders_vec = colliders_cuboid_vec0.append(&mut colliders_cuboid_vec1);
     let collider_end_wall = InfinitePlane3d::new(Vec3::new(0f32, 0f32, 1f32));
-    commands.spawn((RigidBody::Static, colliders_cuboid, LevelSchoolRes));
+    commands.spawn((RigidBody::Static, colliders_vec, LevelSchoolRes));
     commands.spawn((
         Transform::from_xyz(0f32, 0f32, 18.508f32),
         RigidBody::Static,
