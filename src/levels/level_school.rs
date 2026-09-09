@@ -102,9 +102,10 @@ pub fn set_scene_colliders(mut commands: Commands) {
     ];
     let mut colliders_cuboid_vec1 =
         serde_scene::from_json("./data/levels/level-school/colliders/colliders.json");
-    let colliders_vec = colliders_cuboid_vec0.append(&mut colliders_cuboid_vec1);
+    colliders_cuboid_vec0.append(&mut colliders_cuboid_vec1);
+    let colliders_cuboid = Collider::compound(colliders_cuboid_vec0);
     let collider_end_wall = InfinitePlane3d::new(Vec3::new(0f32, 0f32, 1f32));
-    commands.spawn((RigidBody::Static, colliders_vec, LevelSchoolRes));
+    commands.spawn((RigidBody::Static, colliders_cuboid, LevelSchoolRes));
     commands.spawn((
         Transform::from_xyz(0f32, 0f32, 18.508f32),
         RigidBody::Static,
