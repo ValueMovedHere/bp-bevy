@@ -4,7 +4,7 @@ use serde_scene::from_json;
 
 use crate::controller::INITIAL_VELOCITY;
 
-pub const SPAWN_POINT: Vec3 = Vec3::new(0f32, 1.1f32, 0f32);
+pub const SPAWN_POINT: Vec3 = Vec3::new(0f32, 0f32, 0f32);
 
 #[derive(Component)]
 pub struct LevelBackroomsBakedRes;
