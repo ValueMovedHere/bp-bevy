@@ -7,6 +7,8 @@ use bevy::{
 
 use crate::state::Level;
 
+pub const SPAWN_POINT: Vec3 = Vec3::new(0f32, 0f32, 0f32);
+
 #[derive(Component)]
 pub struct LevelSchoolRes;
 

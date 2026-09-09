@@ -5,7 +5,9 @@ use bevy::camera::Exposure;
 use bevy::prelude::*;
 pub use bevy_fps_controller::controller::*;
 
-const SPAWN_POINT: Vec3 = Vec3::new(0f32, 0f32, 0f32);
+use crate::levels::level_school;
+
+pub const INITIAL_VELOCITY: Vec3 = Vec3::new(0f32, 0f32, 0f32);
 
 pub fn setup_controller(mut commands: Commands) {
     // Note that we have two entities for the player
@@ -35,7 +37,7 @@ pub fn setup_controller(mut commands: Commands) {
             LockedAxes::ROTATION_LOCKED,
             Mass(1.0),
             GravityScale(0.0),
-            Transform::from_translation(SPAWN_POINT),
+            Transform::from_translation(level_school::SPAWN_POINT),
             LogicalPlayer,
             FpsControllerInput {
                 pitch: -TAU / 12.0,
@@ -65,11 +67,4 @@ pub fn setup_controller(mut commands: Commands) {
         Exposure::BLENDER,
         RenderPlayer { logical_entity },
     ));
-}
-
-pub fn respawn(mut query: Query<(&mut Transform, &mut LinearVelocity)>) {
-    for (mut transform, mut velocity) in &mut query {
-        velocity.0 = Vec3::ZERO;
-        transform.translation = SPAWN_POINT;
-    }
 }
