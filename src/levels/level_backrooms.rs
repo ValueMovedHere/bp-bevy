@@ -35,4 +35,8 @@ pub fn respawn(query: Query<(&mut Transform, &mut LinearVelocity)>) {
     }
 }
 
-pub fn cleanup() {}
+pub fn cleanup(mut commands: Commands, query: Query<Entity, With<LevelBackroomsBakedRes>>) {
+    for entity in query {
+        commands.entity(entity).despawn();
+    }
+}
