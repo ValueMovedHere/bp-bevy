@@ -2,6 +2,7 @@ use avian3d::prelude::*;
 use bevy::prelude::*;
 use serde_scene::from_json;
 
+use crate::Level;
 use crate::controller::INITIAL_VELOCITY;
 
 pub const SPAWN_POINT: Vec3 = Vec3::new(0f32, 0f32, 0f32);
@@ -36,3 +37,10 @@ pub fn respawn(query: Query<(&mut Transform, &mut LinearVelocity)>) {
 }
 
 pub fn cleanup() {}
+
+// 让我们假设在游戏中触发了切到下一级的逻辑
+pub fn next_scene(mut next_state: ResMut<NextState<Level>>, key: Res<ButtonInput<KeyCode>>) {
+    if key.just_pressed(KeyCode::KeyN) {
+        next_state.set(Level::LevelAbandonedvrgallery);
+    }
+}
