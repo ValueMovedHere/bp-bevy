@@ -15,7 +15,7 @@ pub fn load_scene(mut commands: Commands, asset_server: Res<AssetServer>) {
         WorldAssetRoot(
             asset_server.load(
                 GltfAssetLabel::Scene(0).from_asset(
-                    "models/levels/level-abandoned-vr-gallery/abandoned_-vr_gallery.glb",
+                    "models/levels/level-abandoned-vr-gallery/abandoned_vr_gallery.glb",
                 ),
             ),
         ),
