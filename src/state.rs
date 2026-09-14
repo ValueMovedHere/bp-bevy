@@ -10,6 +10,7 @@ pub enum Level {
     #[default]
     LevelSchool,
     LevelBackroomsBaked,
+    LevelAbandonedvrgallery,
 }
 
 pub fn manage_cursor(
