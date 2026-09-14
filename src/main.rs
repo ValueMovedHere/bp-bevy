@@ -45,6 +45,25 @@ fn main() {
             )
                 .chain(),
         )
+        // 如果处于该层级, 检查是否按下按键 N 并切换层级
+        .add_systems(
+            Update,
+            levels::level_backrooms::next_scene.run_if(in_state(Level::LevelBackroomsBaked)),
+        )
+        // 退出这一层级时清理资源
+        .add_systems(
+            OnExit(Level::LevelBackroomsBaked),
+            levels::level_backrooms::cleanup,
+        )
+        .add_systems(
+            OnEnter(Level::LevelAbandonedvrgallery),
+            (
+                levels::level_abandoned_vr_gallery::load_scene,
+                levels::level_abandoned_vr_gallery::setup_colliders,
+                levels::level_abandoned_vr_gallery::respawn,
+            )
+                .chain(),
+        )
         .add_systems(Update, manage_cursor)
         .run();
 }
