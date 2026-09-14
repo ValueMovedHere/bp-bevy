@@ -28,4 +28,14 @@ pub fn setup_colliders(mut commands: Commands) {
     ));
 }
 
+pub fn respawn(
+    mut commands: Commands,
+    query: Query<(&mut Transform, &mut LinearVelocity), With<LinearVelocity>>,
+) {
+    for (mut transform, mut velocity) in query {
+        transform.translation = SPAWN_POINT;
+        velocity.0 = INITIAL_VELOCITY;
+    }
+}
+
 pub fn cleanup() {}
