@@ -15,7 +15,7 @@ pub fn load_scene(mut commands: Commands, asset_server: Res<AssetServer>) {
         WorldAssetRoot(
             asset_server.load(
                 GltfAssetLabel::Scene(0).from_asset(
-                    "models/levels/level-abandoned-vr-gallery/abandoned-vr-gallery.glb",
+                    "models/levels/level-abandoned-vr-gallery/abandoned_-vr_gallery.glb",
                 ),
             ),
         ),
@@ -33,10 +33,7 @@ pub fn setup_colliders(mut commands: Commands) {
     ));
 }
 
-pub fn respawn(
-    mut commands: Commands,
-    query: Query<(&mut Transform, &mut LinearVelocity), With<LinearVelocity>>,
-) {
+pub fn respawn(query: Query<(&mut Transform, &mut LinearVelocity), With<LinearVelocity>>) {
     for (mut transform, mut velocity) in query {
         transform.translation = SPAWN_POINT;
         velocity.0 = INITIAL_VELOCITY;
