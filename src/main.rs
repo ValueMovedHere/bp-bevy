@@ -1,5 +1,6 @@
 use avian3d::prelude::*;
 use bevy::prelude::*;
+use bevy_easy_gif::*;
 
 mod controller;
 mod levels;
@@ -12,6 +13,7 @@ fn main() {
         .add_plugins(DefaultPlugins)
         .init_state::<Level>()
         .add_plugins(PhysicsPlugins::default())
+        .add_plugins(GifPlugin)
         .add_plugins(controller::FpsControllerPlugin)
         .add_systems(
             OnEnter(Level::LevelSchool),
