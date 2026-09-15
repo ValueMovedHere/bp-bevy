@@ -10,6 +10,7 @@ use serde_scene;
 use crate::state::Level;
 
 pub const SPAWN_POINT: Vec3 = Vec3::new(0f32, 0f32, 0f32);
+const HEIGHT_OFFSET: f32 = 3.350f32;
 
 #[derive(Component)]
 pub struct LevelSchoolRes;
@@ -24,12 +25,14 @@ pub fn load_scene(mut commands: Commands, asset_server: Res<AssetServer>) {
         .build(),
         LevelSchoolRes,
     ));
+    // load the scene glb file
+    let handle: Handle<WorldAsset> = asset_server
+        .load(GltfAssetLabel::Scene(0).from_asset("models/levels/level-school/school_bp.glb"));
+    commands.spawn((WorldAssetRoot(handle.clone()), LevelSchoolRes));
+    // 在新的位置再渲染一个场景
     commands.spawn((
-        WorldAssetRoot(
-            asset_server.load(
-                GltfAssetLabel::Scene(0).from_asset("models/levels/level-school/school_bp.glb"),
-            ),
-        ),
+        WorldAssetRoot(handle),
+        Transform::from_xyz(0f32, HEIGHT_OFFSET, 0f32),
         LevelSchoolRes,
     ));
 }
@@ -103,9 +106,29 @@ pub fn set_scene_colliders(mut commands: Commands) {
     let mut colliders_cuboid_vec1 =
         serde_scene::from_json("./data/levels/level-school/colliders/colliders.json");
     colliders_cuboid_vec0.append(&mut colliders_cuboid_vec1);
+    // 阻止玩家从上方出去
+    let mut colliders_vec2 = vec![
+        (
+            Vec3::new(1.296f32, 1.626f32 + HEIGHT_OFFSET, -13.922f32),
+            Quat::IDENTITY,
+            Collider::cuboid(2.430f32, 3.194f32, 0.543f32),
+        ),
+        (
+            Vec3::new(-1.303f32, 1.626f32 + HEIGHT_OFFSET, 13.903f32),
+            Quat::IDENTITY,
+            Collider::cuboid(2.430f32, 3.194f32, 0.543f32),
+        ),
+    ];
+    colliders_cuboid_vec0.append(&mut colliders_vec2);
     let colliders_cuboid = Collider::compound(colliders_cuboid_vec0);
     let collider_end_wall = InfinitePlane3d::new(Vec3::new(0f32, 0f32, 1f32));
-    commands.spawn((RigidBody::Static, colliders_cuboid, LevelSchoolRes));
+    commands.spawn((RigidBody::Static, colliders_cuboid.clone(), LevelSchoolRes));
+    commands.spawn((
+        RigidBody::Static,
+        colliders_cuboid,
+        Transform::from_xyz(0f32, HEIGHT_OFFSET, 0f32),
+        LevelSchoolRes,
+    ));
     commands.spawn((
         Transform::from_xyz(0f32, 0f32, 18.508f32),
         RigidBody::Static,
