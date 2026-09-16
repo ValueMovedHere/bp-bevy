@@ -9,10 +9,12 @@ use state::{Level, manage_cursor};
 
 fn main() {
     App::new()
+        // 必须先添加 DefaultPlugins 才可以初始化 State
         .add_plugins(DefaultPlugins)
         .init_state::<Level>()
         .add_plugins(PhysicsPlugins::default())
         .add_plugins(controller::FpsControllerPlugin)
+        // 学校走廊
         .add_systems(
             OnEnter(Level::LevelSchool),
             levels::level_school::load_scene,
