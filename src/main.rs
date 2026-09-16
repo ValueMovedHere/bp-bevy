@@ -14,19 +14,16 @@ fn main() {
         .init_state::<Level>()
         .add_plugins(PhysicsPlugins::default())
         .add_plugins(controller::FpsControllerPlugin)
+        .add_systems(Startup, controller::setup_controller)
         // 学校走廊
-        .add_systems(
-            OnEnter(Level::LevelSchool),
-            levels::level_school::load_scene,
-        )
         .add_systems(
             OnEnter(Level::LevelSchool),
             (
                 levels::level_school::set_scene_colliders,
+                levels::level_school::load_scene,
                 levels::level_school::set_cursor,
             ),
         )
-        .add_systems(Startup, controller::setup_controller)
         .add_systems(
             Update,
             (levels::level_school::next_level.run_if(in_state(Level::LevelSchool)),),
