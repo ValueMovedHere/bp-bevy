@@ -1,6 +1,6 @@
 use avian3d::prelude::*;
 use bevy::prelude::*;
-use serde_scene::from_json;
+use serde_scene::collider::from_json;
 
 use crate::controller::INITIAL_VELOCITY;
 

@@ -104,7 +104,7 @@ pub fn set_scene_colliders(mut commands: Commands) {
         ),
     ];
     let mut colliders_cuboid_vec1 =
-        serde_scene::from_json("./data/levels/level-school/colliders/colliders.json");
+        serde_scene::collider::from_json("./data/levels/level-school/colliders/colliders.json");
     colliders_cuboid_vec0.append(&mut colliders_cuboid_vec1);
     // 阻止玩家从上方出去
     let mut colliders_vec2 = vec![
