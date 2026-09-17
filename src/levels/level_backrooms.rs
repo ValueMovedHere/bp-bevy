@@ -6,6 +6,7 @@ use crate::Level;
 use crate::controller::INITIAL_VELOCITY;
 
 pub const SPAWN_POINT: Vec3 = Vec3::new(0f32, 0f32, 0f32);
+const NORMAL_BRIGHTNESS: f32 = 40f32;
 
 #[derive(Component)]
 pub struct LevelBackroomsBakedRes;
@@ -35,6 +36,8 @@ pub fn respawn(query: Query<(&mut Transform, &mut LinearVelocity)>) {
         velocity.0 = INITIAL_VELOCITY;
     }
 }
+
+pub fn light_brightness() {}
 
 pub fn cleanup(mut commands: Commands, query: Query<Entity, With<LevelBackroomsBakedRes>>) {
     for entity in query {
