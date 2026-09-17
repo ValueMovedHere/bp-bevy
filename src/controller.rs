@@ -9,6 +9,9 @@ use crate::levels::level_school;
 
 pub const INITIAL_VELOCITY: Vec3 = Vec3::new(0f32, 0f32, 0f32);
 
+#[derive(Component)]
+struct Player;
+
 pub fn setup_controller(mut commands: Commands) {
     // Note that we have two entities for the player
     // One is a "logical" player that handles the physics computation and collision
@@ -18,6 +21,7 @@ pub fn setup_controller(mut commands: Commands) {
     let height = 1.7f32;
     let logical_entity = commands
         .spawn((
+            Player,
             Collider::cylinder(0.5, height),
             // A capsule can be used but is NOT recommended
             // If you use it, you have to make sure each segment point is
