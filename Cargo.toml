@@ -8,4 +8,4 @@ anyhow = "1.0.104"
 avian3d = "0.7.0"
 bevy = { version = "0.19.1", features = ["jpeg"] }
 bevy_fps_controller = { version = "19.0.0", features = ["avian"] }
-serde_scene = { git = "https://v6.gh-proxy.org/https://github.com/ValueMovedHere/serde_scene.git", rev = "db7bbf39e9a63f33fa55481413924594ba125f26" } # 0.3.1
+serde_scene = { git = "https://v6.gh-proxy.org/https://github.com/ValueMovedHere/serde_scene.git", rev = "00f6eb8fe405f8f1fa19c79aab1f8a17411afd9d" } # 0.3.1
