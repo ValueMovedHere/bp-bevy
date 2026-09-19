@@ -1,6 +1,7 @@
 use avian3d::prelude::*;
 use bevy::prelude::*;
 use serde_scene::collider::from_json;
+use serde_scene::collider::sensor;
 
 use crate::Level;
 use crate::controller::INITIAL_VELOCITY;
@@ -13,7 +14,10 @@ pub struct LevelBackroomsBakedRes;
 pub fn setup_colliders(mut commands: Commands) {
     let colliders_vec = from_json("./data/levels/level-backrooms-baked/colliders/colliders.json");
     let scene_collider = Collider::compound(colliders_vec);
+    let room_sensor =
+        sensor::from_json("./data/levels/level-backrooms-baked/colliders/sensor_room.json");
     commands.spawn((RigidBody::Static, scene_collider, LevelBackroomsBakedRes));
+    commands.spawn(room_sensor);
 }
 
 pub fn load_scene(mut commands: Commands, asset_server: Res<AssetServer>) {
@@ -35,6 +39,8 @@ pub fn respawn(query: Query<(&mut Transform, &mut LinearVelocity)>) {
         velocity.0 = INITIAL_VELOCITY;
     }
 }
+
+pub fn check_collision() {}
 
 pub fn cleanup(mut commands: Commands, query: Query<Entity, With<LevelBackroomsBakedRes>>) {
     for entity in query {
