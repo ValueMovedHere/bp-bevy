@@ -44,7 +44,7 @@ pub fn respawn(query: Query<(&mut Transform, &mut LinearVelocity)>) {
 pub fn check_collision(
     _collision_event: On<CollisionStart>,
     mut enter_count: Local<u8>,
-    _query: Query<Entity, With<Player>>,
+    _query: Query<&Player>,
     mut next_state: ResMut<NextState<Level>>,
 ) {
     *enter_count += 1;
