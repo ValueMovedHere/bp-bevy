@@ -45,9 +45,9 @@ fn main() {
                 .chain(),
         )
         // 如果处于该层级, 检查是否按下按键 N 并切换层级
-        .add_systems(
-            Update,
-            levels::level_backrooms::next_scene.run_if(in_state(Level::LevelBackroomsBaked)),
+        .add_observer(
+            levels::level_backrooms::check_collision
+                .run_if(in_state(state::Level::LevelBackroomsBaked)),
         )
         // 退出这一层级时清理资源
         .add_systems(

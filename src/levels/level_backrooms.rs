@@ -5,6 +5,7 @@ use serde_scene::collider::sensor;
 
 use crate::Level;
 use crate::controller::INITIAL_VELOCITY;
+use crate::controller::Player;
 
 pub const SPAWN_POINT: Vec3 = Vec3::new(0f32, 0f32, 0f32);
 
@@ -40,7 +41,18 @@ pub fn respawn(query: Query<(&mut Transform, &mut LinearVelocity)>) {
     }
 }
 
-pub fn check_collision() {}
+pub fn check_collision(
+    _collision_event: On<CollisionStart>,
+    mut enter_count: Local<u8>,
+    _query: Query<Entity, With<Player>>,
+    mut next_state: ResMut<NextState<Level>>,
+) {
+    *enter_count += 1;
+    // 当玩家第二次进入房间的时候切到下一个场景
+    if *enter_count >= 2 {
+        next_state.set(Level::LevelAbandonedvrgallery);
+    }
+}
 
 pub fn cleanup(mut commands: Commands, query: Query<Entity, With<LevelBackroomsBakedRes>>) {
     for entity in query {
@@ -48,9 +60,9 @@ pub fn cleanup(mut commands: Commands, query: Query<Entity, With<LevelBackroomsB
     }
 }
 
-// 让我们假设在游戏中触发了切到下一级的逻辑
-pub fn next_scene(mut next_state: ResMut<NextState<Level>>, key: Res<ButtonInput<KeyCode>>) {
-    if key.just_pressed(KeyCode::KeyN) {
-        next_state.set(Level::LevelAbandonedvrgallery);
-    }
-}
+// // 让我们假设在游戏中触发了切到下一级的逻辑
+// pub fn next_scene(mut next_state: ResMut<NextState<Level>>, key: Res<ButtonInput<KeyCode>>) {
+//     if key.just_pressed(KeyCode::KeyN) {
+//         next_state.set(Level::LevelAbandonedvrgallery);
+//     }
+// }
