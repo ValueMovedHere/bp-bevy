@@ -5132,8 +5132,8 @@ dependencies = [
 
 [[package]]
 name = "serde_scene"
-version = "0.2.0"
-source = "git+https://v6.gh-proxy.org/https://github.com/ValueMovedHere/serde_scene.git?rev=ba88dffe7bc08ccd8633a70ceb61993543bac06d#ba88dffe7bc08ccd8633a70ceb61993543bac06d"
+version = "0.3.1"
+source = "git+https://v6.gh-proxy.org/https://github.com/ValueMovedHere/serde_scene.git?rev=ad62658d9445ab302cb0d7fd0031cd0b7a3aa129#ad62658d9445ab302cb0d7fd0031cd0b7a3aa129"
 dependencies = [
  "avian3d",
  "bevy",
