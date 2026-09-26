@@ -7,7 +7,7 @@ pub use bevy_fps_controller::controller::*;
 
 use crate::levels::level_school;
 
-const GAP: f32 = 0.3;
+const GAP: f32 = -0.3;
 pub const INITIAL_VELOCITY: Vec3 = Vec3::new(0f32, 0f32, 0f32);
 
 pub fn setup_controller(mut commands: Commands) {
@@ -54,7 +54,6 @@ pub fn setup_controller(mut commands: Commands) {
                 sensitivity: 0.01,
                 ..default()
             },
-            listener,
         ))
         .insert(CameraConfig {
             height_offset: -0.5,
@@ -69,5 +68,6 @@ pub fn setup_controller(mut commands: Commands) {
         }),
         Exposure::BLENDER,
         RenderPlayer { logical_entity },
+        listener,
     ));
 }
