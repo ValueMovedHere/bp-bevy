@@ -29,7 +29,7 @@ pub fn load_scene(mut commands: Commands, asset_server: Res<AssetServer>) {
     ));
     // sound effect of the lights
     let playback_settings = PlaybackSettings::LOOP.with_spatial(true);
-    let audio_handler = asset_server.load("audios/levels/level-backrooms-baked/lights.flac");
+    let audio_handler = asset_server.load("audios/levels/level-backrooms-baked/lights.mp3");
     let audio_player = AudioPlayer::new(audio_handler);
     let lights_audio_entities_vec = audio::from_json(
         "data/levels/level-backrooms-baked/audios/lights.json",
