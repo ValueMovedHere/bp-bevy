@@ -7,6 +7,7 @@ pub use bevy_fps_controller::controller::*;
 
 use crate::levels::level_school;
 
+const GAP: f32 = 0.3;
 pub const INITIAL_VELOCITY: Vec3 = Vec3::new(0f32, 0f32, 0f32);
 
 pub fn setup_controller(mut commands: Commands) {
@@ -16,6 +17,7 @@ pub fn setup_controller(mut commands: Commands) {
     // This distinction is useful for later on if you want to add multiplayer,
     // where often time these two ideas are not exactly synced up
     let height = 1.7f32;
+    let listener = SpatialListener::new(GAP);
     let logical_entity = commands
         .spawn((
             Collider::cylinder(0.5, height),
@@ -52,6 +54,7 @@ pub fn setup_controller(mut commands: Commands) {
                 sensitivity: 0.01,
                 ..default()
             },
+            listener,
         ))
         .insert(CameraConfig {
             height_offset: -0.5,
