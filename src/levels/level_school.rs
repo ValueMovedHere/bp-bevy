@@ -2,10 +2,11 @@ use std::f32::consts::PI;
 
 use avian3d::prelude::*;
 use bevy::{
-    input::gestures::RotationGesture, light::CascadeShadowConfigBuilder, prelude::*,
-    window::CursorOptions,
+    input::gestures::RotationGesture, light::CascadeShadowConfigBuilder, mesh::PlaneMeshBuilder,
+    prelude::*, window::CursorOptions,
 };
 
+use bevy_easy_gif::Gif3d;
 use serde_scene;
 
 use crate::state::Level;
@@ -16,7 +17,11 @@ const HEIGHT_OFFSET: f32 = 3.350f32;
 #[derive(Component)]
 pub struct LevelSchoolRes;
 
-pub fn load_scene(mut commands: Commands, asset_server: Res<AssetServer>) {
+pub fn load_scene(
+    mut commands: Commands,
+    asset_server: Res<AssetServer>,
+    mut meshes: ResMut<Assets<Mesh>>,
+) {
     commands.spawn((
         CascadeShadowConfigBuilder {
             num_cascades: 1,
@@ -49,6 +54,15 @@ pub fn load_scene(mut commands: Commands, asset_server: Res<AssetServer>) {
         //     LevelSchoolRes,
         // ),
     ]);
+    let gif_handle = asset_server.load("images/levels/level-school/wtf.gif");
+    commands.spawn((
+        Mesh3d(meshes.add(Plane3d::new(
+            Vec3::new(1f32, 0f32, 0f32),
+            Vec2::new(1.6f32, 0.5f32),
+        ))),
+        MeshMaterial3d::<StandardMaterial>(asset_value(Color::srgb_u8(0u8, 0u8, 0u8)).into()),
+        Gif3d { handle: gif_handle },
+    ));
 }
 
 pub fn set_scene_colliders(mut commands: Commands) {
