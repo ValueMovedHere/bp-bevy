@@ -2,8 +2,7 @@ use std::f32::consts::PI;
 
 use avian3d::prelude::*;
 use bevy::{
-    light::CascadeShadowConfigBuilder, //
-    prelude::*,
+    input::gestures::RotationGesture, light::CascadeShadowConfigBuilder, prelude::*,
     window::CursorOptions,
 };
 
@@ -31,32 +30,25 @@ pub fn load_scene(mut commands: Commands, asset_server: Res<AssetServer>) {
     let handle: Handle<WorldAsset> = asset_server
         .load(GltfAssetLabel::Scene(0).from_asset("models/levels/level-school/school_bp.glb"));
 
-    let handle_tv_model = asset_server.load("assets/models/levels/level-school/TV.glb");
+    // let handle_tv_model = asset_server.load("assets/models/levels/level-school/television.glb");
     commands.spawn_batch([
         (
             WorldAssetRoot(handle.clone()),
             Transform::default(),
-            // Quat::IDENTITY,
             LevelSchoolRes,
         ),
         (
             WorldAssetRoot(handle),
             Transform::from_xyz(0f32, HEIGHT_OFFSET, 0f32),
-            // Quat::IDENTITY,
             LevelSchoolRes,
         ),
         // (
         //     WorldAssetRoot(handle_tv_model),
-        //     Transform::from_xyz(-2.242f32, 2.274 + HEIGHT_OFFSET, -5.755f32),
-        //     Quat::from_rotation_y(PI / 2.0),
+        //     Transform::from_translation(Vec3::new(0.748f32, -0.202 + HEIGHT_OFFSET, -12.493)),
+        //     // .with_rotation(Quat::from_rotation_y(PI / 2f32)),
         //     LevelSchoolRes,
         // ),
     ]);
-    commands.spawn((
-        WorldAssetRoot(handle_tv_model),
-        Transform::from_xyz(-2.242f32, 2.274f32 + HEIGHT_OFFSET, -5.755),
-        LevelSchoolRes,
-    ));
 }
 
 pub fn set_scene_colliders(mut commands: Commands) {
