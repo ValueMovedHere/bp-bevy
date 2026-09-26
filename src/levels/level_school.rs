@@ -1,3 +1,5 @@
+use std::f32::consts::PI;
+
 use avian3d::prelude::*;
 use bevy::{
     light::CascadeShadowConfigBuilder, //
@@ -28,11 +30,31 @@ pub fn load_scene(mut commands: Commands, asset_server: Res<AssetServer>) {
     // load the scene glb file
     let handle: Handle<WorldAsset> = asset_server
         .load(GltfAssetLabel::Scene(0).from_asset("models/levels/level-school/school_bp.glb"));
-    commands.spawn((WorldAssetRoot(handle.clone()), LevelSchoolRes));
-    // 在新的位置再渲染一个场景
+
+    let handle_tv_model = asset_server.load("assets/models/levels/level-school/TV.glb");
+    commands.spawn_batch([
+        (
+            WorldAssetRoot(handle.clone()),
+            Transform::default(),
+            // Quat::IDENTITY,
+            LevelSchoolRes,
+        ),
+        (
+            WorldAssetRoot(handle),
+            Transform::from_xyz(0f32, HEIGHT_OFFSET, 0f32),
+            // Quat::IDENTITY,
+            LevelSchoolRes,
+        ),
+        // (
+        //     WorldAssetRoot(handle_tv_model),
+        //     Transform::from_xyz(-2.242f32, 2.274 + HEIGHT_OFFSET, -5.755f32),
+        //     Quat::from_rotation_y(PI / 2.0),
+        //     LevelSchoolRes,
+        // ),
+    ]);
     commands.spawn((
-        WorldAssetRoot(handle),
-        Transform::from_xyz(0f32, HEIGHT_OFFSET, 0f32),
+        WorldAssetRoot(handle_tv_model),
+        Transform::from_xyz(-2.242f32, 2.274f32 + HEIGHT_OFFSET, -5.755),
         LevelSchoolRes,
     ));
 }
