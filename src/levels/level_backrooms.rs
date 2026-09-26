@@ -1,6 +1,8 @@
 use avian3d::prelude::*;
 use bevy::prelude::*;
-use serde_scene::collider::from_json;
+
+use serde_scene::audio;
+use serde_scene::collider;
 
 use crate::Level;
 use crate::controller::INITIAL_VELOCITY;
@@ -11,12 +13,14 @@ pub const SPAWN_POINT: Vec3 = Vec3::new(0f32, 0f32, 0f32);
 pub struct LevelBackroomsBakedRes;
 
 pub fn setup_colliders(mut commands: Commands) {
-    let colliders_vec = from_json("./data/levels/level-backrooms-baked/colliders/colliders.json");
+    let colliders_vec =
+        collider::from_json("./data/levels/level-backrooms-baked/colliders/colliders.json");
     let scene_collider = Collider::compound(colliders_vec);
     commands.spawn((RigidBody::Static, scene_collider, LevelBackroomsBakedRes));
 }
 
 pub fn load_scene(mut commands: Commands, asset_server: Res<AssetServer>) {
+    // load glb scene
     commands.spawn((
         LevelBackroomsBakedRes,
         WorldAssetRoot(asset_server.load(
@@ -25,6 +29,16 @@ pub fn load_scene(mut commands: Commands, asset_server: Res<AssetServer>) {
             ),
         )),
     ));
+    // sound effect of the lights
+    let playback_settings = PlaybackSettings::LOOP.with_spatial(true);
+    let audio_handler = asset_server.load("audios/levels/level-backrooms-baked/lights.mp3");
+    let audio_player = AudioPlayer::new(audio_handler);
+    let lights_audio_entities_vec = audio::from_json(
+        "data/levels/level-backrooms-baked/audios/lights.json",
+        audio_player,
+        playback_settings,
+    );
+    commands.spawn_batch(lights_audio_entities_vec);
 }
 
 pub fn respawn(query: Query<(&mut Transform, &mut LinearVelocity)>) {
