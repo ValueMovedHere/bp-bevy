@@ -1,5 +1,6 @@
 use avian3d::prelude::*;
 use bevy::prelude::*;
+use bevy_inspector_egui::{bevy_egui::EguiPlugin, quick::WorldInspectorPlugin};
 
 mod controller;
 mod levels;
@@ -10,6 +11,8 @@ use state::{Level, manage_cursor};
 fn main() {
     App::new()
         .add_plugins(DefaultPlugins)
+        .add_plugins(EguiPlugin::default())
+        .add_plugins(WorldInspectorPlugin::new())
         .init_state::<Level>()
         .add_plugins(PhysicsPlugins::default())
         .add_plugins(controller::FpsControllerPlugin)
