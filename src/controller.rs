@@ -1,8 +1,11 @@
 use ::std::f32::consts::TAU;
 
 use avian3d::prelude::*;
-use bevy::camera::Exposure;
-use bevy::prelude::*;
+use bevy::{
+    camera::Exposure, //
+    prelude::*,
+    window::CursorOptions,
+};
 pub use bevy_fps_controller::controller::*;
 
 use crate::levels::level_school;
@@ -74,4 +77,9 @@ pub fn setup_controller(mut commands: Commands) {
         RenderPlayer { logical_entity },
         listener,
     ));
+}
+
+pub fn set_cursor(mut cursor: Single<&mut CursorOptions>) {
+    cursor.grab_mode = bevy::window::CursorGrabMode::Locked;
+    cursor.visible = false;
 }

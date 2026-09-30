@@ -2,7 +2,6 @@ use avian3d::prelude::*;
 use bevy::{
     light::CascadeShadowConfigBuilder, //
     prelude::*,
-    window::CursorOptions,
 };
 
 use serde_scene;
@@ -141,11 +140,6 @@ pub fn set_scene_colliders(mut commands: Commands) {
         Collider::from(collider_end_wall),
         LevelSchoolRes,
     ));
-}
-
-pub fn set_cursor(mut cursor: Single<&mut CursorOptions>) {
-    cursor.grab_mode = bevy::window::CursorGrabMode::Locked;
-    cursor.visible = false;
 }
 
 pub fn cleanup(mut commands: Commands, query: Query<Entity, With<LevelSchoolRes>>) {

@@ -21,7 +21,7 @@ fn main() {
             (
                 levels::level_school::set_scene_colliders,
                 levels::level_school::load_scene,
-                levels::level_school::set_cursor,
+                controller::set_cursor,
             ),
         )
         .add_systems(
