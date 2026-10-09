@@ -14,7 +14,8 @@ pub struct LevelBackroomsBakedRes;
 
 pub fn setup_colliders(mut commands: Commands) {
     let colliders_vec =
-        collider::from_json("./data/levels/level-backrooms-baked/colliders/colliders.json");
+        collider::from_json("./data/levels/level-backrooms-baked/colliders/colliders.json")
+            .expect("Failed to parse collider data from JSON:");
     let scene_collider = Collider::compound(colliders_vec);
     commands.spawn((RigidBody::Static, scene_collider, LevelBackroomsBakedRes));
 }
@@ -37,7 +38,8 @@ pub fn load_scene(mut commands: Commands, asset_server: Res<AssetServer>) {
         "data/levels/level-backrooms-baked/audios/lights.json",
         audio_player,
         playback_settings,
-    );
+    )
+    .expect("Failed to parse audio position data from JSON:");
     commands.spawn_batch(lights_audio_entities_vec);
 }
 

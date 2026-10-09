@@ -24,7 +24,8 @@ pub fn load_scene(mut commands: Commands, asset_server: Res<AssetServer>) {
 
 pub fn setup_colliders(mut commands: Commands) {
     let colliders_vec =
-        from_json("./data/levels/level-abandoned-vr-gallery/colliders/colliders.json");
+        from_json("./data/levels/level-abandoned-vr-gallery/colliders/colliders.json")
+            .expect("Failed to parse collider data from JSON:");
     let scene_collider = Collider::compound(colliders_vec);
     commands.spawn((
         LevelAbandonedVrGalleryRes,
