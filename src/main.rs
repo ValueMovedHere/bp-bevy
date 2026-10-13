@@ -63,6 +63,10 @@ fn main() {
             )
                 .chain(),
         )
+        .add_systems(
+            OnExit(Level::LevelAbandonedvrgallery),
+            levels::level_abandoned_vr_gallery::cleanup,
+        )
         .add_systems(Update, manage_cursor)
         .run();
 }

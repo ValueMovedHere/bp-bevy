@@ -41,4 +41,8 @@ pub fn respawn(query: Query<(&mut Transform, &mut LinearVelocity), With<LinearVe
     }
 }
 
-pub fn cleanup() {}
+pub fn cleanup(mut commands: Commands, query: Query<Entity, With<LevelAbandonedVrGalleryRes>>) {
+    for entity in query {
+        commands.entity(entity).despawn();
+    }
+}
